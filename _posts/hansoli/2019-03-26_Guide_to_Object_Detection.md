@@ -13,7 +13,7 @@ tags: [Object Detection]
 
 본 포스트에서는 [처음부터 끝까지: 딥 러닝을 사용한 객체 검출을 위한 가이드: Faster R-CNN, YOLO, SSD](https://cv-tricks.com/object-detection/faster-r-cnn-yolo-ssd/)를 한국어로 번역하여 소개하겠습니다. 딥 러닝 기반 객체 검출의 기초 개념 학습에 도움이 될 것으로 생각됩니다.
 
-This article is a translation of [Zero to Hero: Guide to Object Detection using Deep Learning: Faster R-CNN, YOLO, SSD](https://cv-tricks.com/object-detection/faster-r-cnn-yolo-ssd/).
+This article was translated from [Zero to Hero: Guide to Object Detection using Deep Learning: Faster R-CNN, YOLO, SSD](https://cv-tricks.com/object-detection/faster-r-cnn-yolo-ssd/).
 
 ---
 
@@ -21,7 +21,7 @@ This article is a translation of [Zero to Hero: Guide to Object Detection using 
 
 ## 이미지 분류란?
 
-이미지 분류 문제는 이미지를 받아 그 이미지 안에 어떤 객체가 존재하는지 예측합니다. 예를 들어 고양이와 개를 분류하는 분류 모델을 만들었다면 다음과 같이 고양이나 개 이미지를 받아 그 분류를 추측할 수 있습니다.
+이미지 분류 문제는 이미지를 받아 그 이미지 안에 어떤 객체가 존재하는지 예측합니다. 예를 들어 고양이와 개를 분류하는 분류기를 만들었다면 다음과 같이 고양이나 개 이미지를 받아 그 분류를 추측할 수 있습니다.
 
 ![](https://cv-tricks.com/wp-content/uploads/2017/12/classification-cat-vs-dog-300x195.jpg)
 
@@ -29,11 +29,11 @@ This article is a translation of [Zero to Hero: Guide to Object Detection using 
 
 ![](https://cv-tricks.com/wp-content/uploads/2017/12/cat_dog-300x200.jpeg)
 
-이 문제를 해결하기 위해서는 두 분류를 동시에 검출할 수 있는 다중 분류 모델을 사용해야 합니다. 하지만 그렇게 하더라도 이미지의 어느 부분이 고양이고 어느 부분이 개를 나타내는지에 관한 정보는 얻을 수 없습니다. 이미지 내에서 (분류가 알려져 있는) 특정 객체의 위치가 어디인지 판별하는 문제는 **지역화**라고 부릅니다. 하지만 분류가 미리 주어져 있지 않은 경우 지역화를 위해서는 객체의 분류를 함께 구할 필요가 있습니다.
+이 문제를 해결하기 위해서 두 분류를 동시에 검출할 수 있는 다중 분류 모델을 사용합니다. 하지만 그렇게 하더라도 이미지의 어디에 고양이나 개가 존재하는지에 관한 정보는 얻을 수 없습니다. 이미지 내에서 (분류가 알려져 있는) 특정 객체의 위치가 어디인지 판별하는 문제는 **지역화**라고 부릅니다. 하지만 분류가 미리 주어져 있지 않은 경우 지역화를 위해서는 객체의 분류를 함께 구할 필요가 있습니다.
 
 ![](https://cv-tricks.com/wp-content/uploads/2017/12/detection-vs-classification-300x220.png)
 
-객체의 분류와 위치를 같이 예측하는 문제는 **객체 검출**이라고 부릅니다. 이미지에서 객체의 분류만을 예측하는 대신에 객체를 포함하는 범위의 사각형을 함께 추측해야 합니다. (이 사각형을 경계 상자라고 부릅니다) 따라서 이미지 안의 객체 하나마다 다음과 같은 값을 구해야 합니다.
+객체의 분류와 위치를 같이 예측하는 문제는 **객체 검출**이라고 부릅니다. 이미지에서 객체의 분류만을 예측하는 대신에 객체를 포함하는 범위를 사각형 형태로 함께 예측해야 합니다. (이 사각형을 경계 상자라고 부릅니다) 따라서 이미지 안의 객체 하나마다 다음과 같은 값을 구해야 합니다.
 
 * 분류 이름
 * 경계 상자의 좌상단 x 좌표
@@ -47,4 +47,54 @@ This article is a translation of [Zero to Hero: Guide to Object Detection using 
 
 이제부터 객체 검출기를 훈련하기 위해 자주 쓰이는 방법론에 대해서 소개하겠습니다. 역사적으로 객체 검출을 위한 알고리즘은 2001년에 Viola, Jones 등이 제안한 Haar Cascades 분류기 이래 다양한 방법이 제안되었지만 여기에서는 신경망과 딥 러닝을 이용하는 첨단 알고리즘에 주목하겠습니다.
 
-객체 검출은 가능한 모든 위치에서 정해진 사이즈의 윈
+객체 검출은 가능한 모든 위치에서 고정된 창(window)의 크기만큼 이미지를 잘라낸 후 이미지 분류기로 전달하는 **이미지 분류 문제로 모델링**할 수 있습니다.
+
+![](https://cv-tricks.com/wp-content/uploads/2017/12/Sliding-window.gif.pagespeed.ce.DxcygilfvB.gif)
+
+각 창의 이미지를 창 안의 객체의 분류를 추측하는 분류기로 전달하면 이미지 내의 객체 위치와 그 분류를 알 수 있습니다. 간단해 보이지만 문제가 아직 남아 있습니다. 창의 크기는 어떻게 정해야 할까요?
+
+![](https://cv-tricks.com/wp-content/uploads/2017/12/Small-object-300x214.jpg)
+
+![](https://cv-tricks.com/wp-content/uploads/2017/12/Big-Object-300x232.jpg)
+
+위 예시에서도 볼 수 있듯이 검출할 객체의 크기는 다양합니다. 이 문제를 해결하기 위해 이미지의 크기를 조절하여 이미지 피라미드를 구성합니다. 다양한 배율로 리사이징한 이미지를 여러 장 준비하면 이 중 하나는 창 크기와 객체의 크기가 일치할 것입니다. 일반적으로 이론적인 최소 크기에 도달할 때까지 이미지를 단계적으로 다운샘플링하고, (이미지 크기를 줄입니다) 각 이미지에 대해 고정 창 크기를 가진 검출기를 실행합니다. 보통 피라미드는 64층으로 구성되고 모든 창 내의 이미지가 관심 영역 내의 객체를 분류하기 위해 분류기에 공급됩니다. 이 과정을 통해 크기와 위치에 관한 문제를 해결할 수 있습니다.
+
+![](https://cv-tricks.com/wp-content/uploads/2017/12/pyramid-269x300.png)
+
+또 하나의 문제 **종횡비**가 있습니다. 앉아있는 사람, 서 있는 사람, 자는 사람이 다른 종횡비를 갖는 것처럼 객체의 모양은 다양하게 나타날 수 있습니다. 이 문제에 대해서는 이 포스트의 뒷부분에서 다시 다룰 것입니다. RCNN, Faster-RCNN, SSD 등의 객체 감지 방법의 특징과 차이점을 알아보겠습니다.
+
+## 1. HOG 특징을 이용한 객체 감지
+
+2005년 Navneet Dalal과 Bill Triggs는 HOG(Histogram of Oriented Gradient) 특징(feature)을 소개하는 컴퓨터 비전에 있어 중요한 논문을 발표하였습니다. HOG 특징은 계산량이 적으며 현실 세계의 문제들을 해결하는데 적합합니다. 피라미드 안의 각 창에서 HOG 특징을 계산하여 SVM(Support Vector Machine)에 전달하는 형태로 분류기를 구성합니다. 이는 보행자 감지, 얼굴 인식 등의 각종 객체 검출 유스 케이스에서 실시간 탐지를 가능하게 했습니다.
+
+## 2. 지역 기반 합성곱 신경망 (R-CNN)
+
+객체 검출 문제를 이미지 분류로 모델링했기 때문에 분류기의 정확도에 모델의 성능이 좌우됩니다. 따라서 딥 러닝이 나타나자 HOG 특징 기반 분류기를 더 정확한 CNN 기반 분류기로 대체하는 건 자연스러운 흐름이였다고 할 수 있습니다. 하지만 여기서 문제가 하나 있습니다. CNN은 매우 느리고 계산량이 많습니다. 모든 창의 이미지 조각에 대해 CNN을 실행하는 것은 불가능합니다. R-CNN에서는 **선택적 탐색**(Selective Search)이라는 알고리즘을 사용하여 분류기에 공급할 경계 상자의 갯수를 2000개 까지 줄여서 이 문제를 해결합니다. 선택적 탐색 알고리즘에서는 텍스처, 강도, 색상, 내부 측정 등의 지역적 단서를 활용하여 객체가 존재할 가능성이 있는 영역을 생성합니다. 그리고 이 영역을 CNN 기반의 분류기에 공급합니다. CNN의 완전 연결 (fully connected) 계층은 정해진 사이즈의 입력만 받아들일 수 있기 때문에 (VGG의 경우 224x224) 모든 이미지 조각을 해당 크기로 리사이즈하고 (이 때 종횡비는 보존되지 않습니다) CNN에 전달합니다. 정리하자면 R-CNN은 크게 3가지 과정으로 나뉩니다.
+
+1. 적합한 객체를 생성하기 위해 선택적 탐색을 실행.
+2. 생성된 객체를 CNN에 전달하고 SVM을 통해 각 객체의 분류를 예측.
+3. 각 경계 상자의 회귀를 개별적으로 학습하여 객체를 최적화합니다.
+
+![](https://cv-tricks.com/wp-content/uploads/2017/12/RCNN-e1514378306435.jpg.pagespeed.ce.DQCfFNT9Lf.jpg)
+
+## 3. 공간 피라미드 풀링 (SPP-Net)
+
+여전히 R-CNN은 매우 느립니다. 선택적 탐색이 생성한 2000개의 제안 영역에서 CNN을 실행하는 건 오랜 시간이 필요합니다. SPP-Net은 이 문제를 해결합니다. SPP-Net에서는 이미지 전체에 대해 CNN을 한 번만 실행하고 이를 이용해 선택적 탐색에서 제안한 영역에 대한 CNN 표현을 계산합니다. 해당 영역과 일치하는 특성 지도(feature map)의 마지막 합성곱 계층에서 풀링 연산을 수행하면 됩니다. 중간 레이어에서 발생하는 다운 샘플링(VGG의 경우 좌표를 16으로 나눔)을 고려하여 합성곱 계층의 영역을 투영하여, 해당 영역과 일치하는 직사각형 영역을 구할 수 있습니다.
+
+CNN은 완전 연결 계층에는 고정 길이의 입력만
+
+![](https://cv-tricks.com/wp-content/uploads/2016/12/CNN.png)
+
+## 4. Fast R-CNN
+
+...
+
+## 5. Faster R-CNN
+
+...
+
+## 회귀 기반 객체 검출
+
+## 7. YOLO
+
+## 8. SSD
