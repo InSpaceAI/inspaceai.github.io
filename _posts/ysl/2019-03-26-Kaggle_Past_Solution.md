@@ -159,3 +159,6 @@ tags: [Kaggle]
 * [World Cup 2010 - Take on the Quants - Goldman Sachs and JP Morgan 경기 예측하기](https://www.kaggle.com/c/worldcup2010)
 * [World Cup 2010 - Confidence Challenge - 선수들이 그들의 월드컵 예측에 자신감을 부여할 것을 요구](https://www.kaggle.com/c/worldcupconf)
 * [Forecast Eurovision Voting - 5월 25일, 27일, 29일 노르웨이에서 열리는 올해 유로비전 송 콘테스트 투표를 예측하기](https://www.kaggle.com/c/Eurovision2010)
+
+원본링크 : (https://ndres.me/kaggle-past-solutions/)
+이글은 원작성자인 Eliot Andres님의 번역 동의를 받았습니다.
