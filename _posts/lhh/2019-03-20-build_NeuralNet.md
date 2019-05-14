@@ -35,7 +35,7 @@ tags: [XAI, Multi-Classification]
  훈련셋과 시험셋을 랜덤하게 나눠주기 위해 data와 target을 합쳐서 shuffle 해줍니다.
 
  ```python
- train, test = total[:len(total)*8//10], totla[len(total)*//10:]
+ train, test = total[:len(total)*8//10], totla[len(total)*8//10:]
  x_train, y_train = train[:,:4], train[:, 4]
  x_test, y_test = test[:,:4], test[:, 4]
  ```
