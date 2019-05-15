@@ -92,7 +92,7 @@ import h2o
 h2o.init(nthreads=-1, max_mem_size=8)
 ```
 
-## 데이터 로딩
+## 데이터 로딩하기
 
 다음으로 "bad loan(불량 대출)" 데이터 세트를 불러올 것 입니다. 본 문제는 대출이 불량인지 아닌지(ex. 대출 업체에게 상환하지 않음)를 예측하는 문제입니다(이진분류). 열 'bad_loan'은 대출이 불량이면 1이고 그렇지 않으면 0입니다.
 
@@ -108,7 +108,7 @@ print(data.shape)
 
 ```
 
-## 데이터 전처리
+## 데이터 전처리하기
 
 h2o를 사용하여 데이터를 보다 쉽게 전처리 할 수 있습니다.
 
@@ -138,7 +138,7 @@ x.remove('int_rate')  # 필요없는 열 제거
 print(x)
 ```
 
-## H2O AutoML
+## AutoML 빌드하기
 
 ```python
 from h2o.automl import H2OAutoML
