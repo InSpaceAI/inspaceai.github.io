@@ -91,6 +91,7 @@ import h2o
 # [max_mem_size='800M'] -> 최대 800MB의 메모리를 할당해줍니다.
 h2o.init(nthreads=-1, max_mem_size=8)
 ```
+   ![H2O_Start_Init]({{"/images/sangmin/Start_H2O_1.PNG" | prepend: site.baseurl }})
 
 ## 데이터 로딩하기
 
@@ -107,6 +108,9 @@ data = h2o.import_file(loan_csv) # 163,987 rows x 15 columns
 print(data.shape)
 
 ```
+
+   ![H2O_Start_Data_Loding]({{"/images/sangmin/Start_H2O_2.PNG" | prepend: site.baseurl }})
+
 
 ## 데이터 전처리하기
 
@@ -138,6 +142,9 @@ x.remove('int_rate')  # 필요없는 열 제거
 print(x)
 ```
 
+   ![H2O_Start_Data_Preprocessing]({{"/images/sangmin/Start_H2O_4.PNG" | prepend: site.baseurl }})
+
+
 ## AutoML 빌드하기
 
 ```python
@@ -158,6 +165,10 @@ aml.train(x=x, y=y, training_frame=train, validation_frame=valid)
 lb = aml.leaderboard
 print(lb.head(rows=lb.nrows))
 
+```
+
+```python
+
 # 빌드된 AutoML 모델 MOJO 포맷으로 저장
 aml.leader.download_mojo(path="./")
 
@@ -166,7 +177,6 @@ model_path = h2o.save_model(aml.leader, path="./product_backorders_model_bin")
 
 # binary 포맷으로 저장한 모델 불러오기
 saved_model = h2o.load_model(model_path)
-
-# 불러온 AutoML 모델 출력
-print(saved_model)
 ```
+
+   ![H2O_Start_AutoML_Build]({{"/images/sangmin/Start_H2O_3.PNG" | prepend: site.baseurl }})
