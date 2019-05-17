@@ -106,7 +106,6 @@ loan_csv = "https://raw.githubusercontent.com/h2oai/app-consumer-loan/master/dat
 # [h2o.import_file]을 사용하여 URL에 있는 데이터 셋도 불러올 수 있습니다.
 data = h2o.import_file(loan_csv) # 163,987 rows x 15 columns
 print(data.shape)
-
 ```
 
    ![H2O_Start_Data_Loding]({{"/images/sangmin/Start_H2O_2.PNG" | prepend: site.baseurl }})
@@ -165,10 +164,6 @@ aml.train(x=x, y=y, training_frame=train, validation_frame=valid)
 lb = aml.leaderboard
 print(lb.head(rows=lb.nrows))
 
-```
-
-```python
-
 # 빌드된 AutoML 모델 MOJO 포맷으로 저장
 aml.leader.download_mojo(path="./")
 
@@ -177,6 +172,23 @@ model_path = h2o.save_model(aml.leader, path="./product_backorders_model_bin")
 
 # binary 포맷으로 저장한 모델 불러오기
 saved_model = h2o.load_model(model_path)
+
+# AutoML 빌드 결과
+train finish
+model_id                                                  auc    logloss    mean_per_class_error      rmse       mse
+---------------------------------------------------  --------  ---------  ----------------------  --------  --------
+StackedEnsemble_AllModels_AutoML_20190516_155315     0.683569   0.44367                 0.367526  0.373269  0.13933
+StackedEnsemble_BestOfFamily_AutoML_20190516_155315  0.682984   0.443865                0.367318  0.373342  0.139384
+GBM_1_AutoML_20190516_155315                         0.67974    0.443421                0.37059   0.373333  0.139378
+GBM_2_AutoML_20190516_155315                         0.677542   0.444271                0.371212  0.373749  0.139689
+GBM_3_AutoML_20190516_155315                         0.675973   0.445152                0.372821  0.374184  0.140013
+GBM_5_AutoML_20190516_155315                         0.673625   0.446108                0.373556  0.374545  0.140284
+GLM_grid_1_AutoML_20190516_155315_model_1            0.67241    0.446304                0.374331  0.374186  0.140015
+DeepLearning_1_AutoML_20190516_155315                0.671444   0.447676                0.375277  0.374704  0.140403
+GBM_4_AutoML_20190516_155315                         0.668317   0.448611                0.377496  0.375658  0.141119
+GBM_grid_1_AutoML_20190516_155315_model_1            0.665354   0.472556                0.379348  0.385063  0.148274
+XRT_1_AutoML_20190516_155315                         0.664014   0.449368                0.379801  0.375686  0.14114
+DRF_1_AutoML_20190516_155315                         0.659597   0.452874                0.383664  0.376798  0.141977
 ```
 
    ![H2O_Start_AutoML_Build]({{"/images/sangmin/Start_H2O_3.PNG" | prepend: site.baseurl }})
