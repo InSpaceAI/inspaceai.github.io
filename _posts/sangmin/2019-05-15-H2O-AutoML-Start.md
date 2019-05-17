@@ -175,8 +175,8 @@ saved_model = h2o.load_model(model_path)
 
 # AutoML 빌드 결과
 train finish
-model_id                                                  auc    logloss  mean_per_class_error   rmse    mse
----------------------------------------------------  --------  ---------  --------------------  ------  -----
+model_id                                              auc   logloss   mean_per_class_error  rmse   mse
+--------------------------------------------------  ------  --------  -------------------- ------ -----
 StackedEnsemble_AllModels_AutoML_20190516_155315     0.683569   0.44367     0.367526  0.373269  0.13933
 StackedEnsemble_BestOfFamily_AutoML_20190516_155315  0.682984   0.443865    0.367318  0.373342  0.139384
 GBM_1_AutoML_20190516_155315                         0.67974    0.443421    0.37059   0.373333  0.139378
