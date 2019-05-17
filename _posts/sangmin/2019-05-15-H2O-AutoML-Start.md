@@ -141,9 +141,6 @@ x.remove('int_rate')  # 필요없는 열 제거
 print(x)
 ```
 
-   ![H2O_Start_Data_Preprocessing]({{"/images/sangmin/Start_H2O_4.PNG" | prepend: site.baseurl }})
-
-
 ## AutoML 빌드하기
 
 ```python
