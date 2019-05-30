@@ -94,7 +94,10 @@ CartPole-v1 은 OpenAI의 gym 라이브러리를 통해 플레이할 수 있는 
 - 강화학습 알고리즘도 중요하지만, 좋은 하이퍼 파라미터 찾는 과정도 중요하다고 느꼈습니다.
 
 
-### 참고 자료
+### 참고자료
+
+아래 사이트들의 도움을 받아 코드 구현을 진행하였습니다.  
+코드 구현을 원하시는 분들 께서는 아래의 사이트를 참고하시면 많은 도움이 될 것입니다.
 
 - https://github.com/reinforcement-learning-kr/Unity_ML_Agents
 - https://github.com/RLOpensource/tensorflow_RL
