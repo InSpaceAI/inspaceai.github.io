@@ -89,7 +89,9 @@ CartPole-v1 은 OpenAI의 gym 라이브러리를 통해 플레이할 수 있는 
 
 - ![3layer_32units]({{ "/images/lhh/cartpole_rl_compare/layer3_32units.png" | prepend: site.baseurl }})
 
-- 환경 시드에 따라서도 성능 차이가 생길 수 있다는 것을 알게 되었습니다.
+- 환경 시드에 따라서도 성능 차이가 생길 수 있다는 것을 알게 되었습니다. 아래의 그림은 환경 시드만 고정하지 않은채 학습을 진행한 보상 그래프 입니다.
+
+- ![diff_env_seed_a2c]({{ "/images/lhh/cartpole_rl_compare/diff_env_seed_a2c.png" | prepend: site.baseurl }})
 
 - 강화학습 알고리즘도 중요하지만, 좋은 하이퍼 파라미터 찾는 과정도 중요하다고 느꼈습니다.
 
