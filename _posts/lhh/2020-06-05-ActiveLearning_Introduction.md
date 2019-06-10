@@ -29,6 +29,9 @@ Active Learning은 주로 데이터 셋의 양이 너무 방대하여 라벨링 
 
 액티브 러닝에는 크게 3가지 종류의 시나리오가 존재합니다. 지금부터 모델이 전문가에게 라벨링 요청을 날리는 시나리오들에 대해서 살펴보겠습니다.
 
+![3scenario]({{ "/images/lhh/active_learning/1-2.png" | prepend: site.baseurl }})
+
+
 ### Membership Query Synthesis
 
 ![MembershipQuerySynthesis]({{ "/images/lhh/active_learning/2.png" | prepend: site.baseurl }})

@@ -31,11 +31,10 @@ CartPole-v1 은 OpenAI의 gym 라이브러리를 통해 플레이할 수 있는 
 
 ## 구현한 강화학습 알고리즘
 
-구현한 강화학습 알고리즘은 <!-- DQN, --> REINFORCE, A2C, DDPG, PPO(DDPG와 PPO는 Continuous Action으로 구현하였고, DDPG(sigmoid)는 액션이 0.5보다 작으면 0 크면 1로 설정, PPO(linear)는 액션이 0보다 작으면 0 크면 1로 설정)이고, 해당 알고리즘에 대한 논문링크는 다음과 같습니다.
+구현한 강화학습 알고리즘은 DQN, REINFORCE, A2C, DDPG, PPO(DDPG와 PPO는 Continuous Action으로 구현하였고, DDPG(sigmoid)는 액션이 0.5보다 작으면 0 크면 1로 설정, PPO(linear)는 액션이 0보다 작으면 0 크면 1로 설정)이고, 해당 알고리즘에 대한 논문링크는 다음과 같습니다.
 
 
-<!-- DQN 논문 링크 : [https://arxiv.org/pdf/1312.5602](https://arxiv.org/pdf/1312.5602) -->
-
+- DQN 논문 링크 : https://arxiv.org/pdf/1312.5602
 - REINFORCE 논문 링크 : http://papers.nips.cc/paper/1713-policy-gradient-methods-for-reinforcement-learning-with-function-approximation.pdf
 - A2C 논문 링크 : https://arxiv.org/pdf/1602.01783
 - DDPG 논문 링크 : https://arxiv.org/pdf/1509.02971
@@ -46,10 +45,10 @@ CartPole-v1 은 OpenAI의 gym 라이브러리를 통해 플레이할 수 있는 
 
 알고리즘 별 공통 하이퍼 파라미터는 최대한 동일하게 유지하였고 세팅은 다음과 같습니다
 
-- 레이어 수 : 2
-- 히든 레이어 유닛 수 : 256
+- 레이어 수 : 2 ,(DQN : 3)
+- 히든 레이어 유닛 수 : 256, (DQN : 64)
 - 활성화 함수 : ReLU
-- 학습률 5e-3 (actor, critic 분리 모델은 각각 1e-3, 5e-3으로 설정)
+- 학습률 5e-3 (actor, critic 분리 모델은 각각 1e-3, 5e-3으로 설정, DQN : 2e-4)
 - 감가율 : 0.99
 - 시드(numpy, tensorflow, env) : 1
 
@@ -61,6 +60,7 @@ CartPole-v1 은 OpenAI의 gym 라이브러리를 통해 플레이할 수 있는 
 
 #### 학습 중 500점을 받은 에피소드 횟수는 다음과 같습니다.
 
+- DQN : 47
 - REINFORCE : 629
 - A2C : 60
 - DDPG : 264 
@@ -70,6 +70,7 @@ CartPole-v1 은 OpenAI의 gym 라이브러리를 통해 플레이할 수 있는 
 
 #### 학습 중 최초로 마지막 10 에피소드의 평균 점수가 490이상에 도달하는 스텝은 다음과 같습니다.
 
+- DQN : 428
 - REINFORCE : 116
 - A2C : 313
 - DDPG : 648
