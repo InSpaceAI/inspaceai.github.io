@@ -7,8 +7,9 @@ categories: [Tutorials, Reinforcement Learning]
 tags: [Reinforcement Learning]
 ---
 
-본 포스트에서는 gym 환경 중 하나인 CartPole-v1 환경에서 강화학습 알고리즘들을 구현하고 비록 간단한 환경이지만 알고리즘들의 성능 비교 내용을 다뤄보겠습니다.
-코드는 [이 곳](https://github.com/InSpaceAI/RL-Zoo)에서 관리하고 있습니다.
+본 포스트에서는 gym 환경 중 하나인 CartPole-v1 환경에서 강화학습 알고리즘들을 구현하고 비록 간단한 환경이지만 알고리즘들의 성능 비교 내용을 다뤄보겠습니다.  
+저장소 링크는 아래와 같습니다.  
+- https://github.com/InSpaceAI/RL-Zoo
 
 ---
 
