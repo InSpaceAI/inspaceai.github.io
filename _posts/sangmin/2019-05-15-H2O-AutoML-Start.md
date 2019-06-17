@@ -11,8 +11,6 @@ tags: [AutoML, H2O]
 
 ---
 
-> 작성자 : 박상민 - (주)인스페이스 미래기술실 연구원
-
 <br>
 
 # H2O AutoML 시작하기
@@ -23,6 +21,10 @@ tags: [AutoML, H2O]
 
 * Python기반 H2O 구동환경 설치하기
 * Python기반 H2O AutoML 소스코드 빌드하기
+    * H2O 불러오기
+    * 데이터 불러오기
+    * 데이터 전처리하기
+    * AutoML 빌드하기
 
 언어는 Python을 사용하였습니다.
 
@@ -93,7 +95,9 @@ h2o.init(nthreads=-1, max_mem_size=8)
 ```
    ![H2O_Start_Init]({{"/images/sangmin/Start_H2O_1.PNG" | prepend: site.baseurl }})
 
-## 데이터 로딩하기
+h2o.init()을 호출시키면, h2o 클러스터가 초기화 되면서 h2o 클러스터
+
+## 데이터 불러오기
 
 다음으로 "bad loan(불량 대출)" 데이터 세트를 불러올 것 입니다. 본 문제는 대출이 불량인지 아닌지(ex. 대출 업체에게 상환하지 않음)를 예측하는 문제입니다(이진분류). 열 'bad_loan'은 대출이 불량이면 1이고 그렇지 않으면 0입니다.
 
