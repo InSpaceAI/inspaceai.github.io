@@ -73,13 +73,19 @@ tags: [FireNet, Test Review]
     
 
 5. 모델별 결과 추출 속도(FPS) 측정
+    * 논문에서 공개한 모델 성능지표와 처리속도는 다음과 같습니다.  
+        ![FireNet_Evaluate]({{ "/images/sangmin/FireNet_Evaluate.PNG" | prepend: site.baseurl }})
+    * 논문에서는 GPU가 없는 환경(CPU : INtel Core i5, RAM 8GB)에서 측정을 하였으므로, 제가 측정한 지표들과 차이가 있을 수 있습니다.
+
     * 아래는 테스트 결과 비교 표 입니다.  
-        ![FireNet_Github]({{ "/images/sangmin/Fire_Detection_model_compare.png" | prepend: site.baseurl }})
+        ![FireNet_Github]({{ "/images/sangmin/Fire_Detection_model_compare.PNG" | prepend: site.baseurl }})
+    * 모델에서 측정한 지표보다 굉장히 좋게 나왔습니다. 
 
 <br>
 
 # 모델 출력 결과
 
+모델은 
 * 영상 1
     * FireNet  
         ![FireNet]({{ "/images/sangmin/FireNet-barbecue.gif" | prepend: site.baseurl }}) 
