@@ -70,8 +70,7 @@ tags: [FireNet, Test Review]
 
 4. 소스코드의 정상 작동 여부 확인 
     * 소스코드는 문제 없이 잘 작동했습니다. 소스코드가 있는 [Github](https://github.com/tobybreckon/fire-detection-cnn)을 참고하시면 좋을 것 같습니다.  
-        ![FireNet_Github]({{ "/images/sangmin/FireNet_github.PNG" | prepend: site.baseurl }})   
-        [출처](https://github.com/tobybreckon/fire-detection-cnn)
+        ![FireNet_Github]({{ "/images/sangmin/FireNet_github.PNG" | prepend: site.baseurl }}) [출처](https://github.com/tobybreckon/fire-detection-cnn)
     
 
 5. 모델별 결과 추출 속도(FPS) 측정
@@ -87,7 +86,9 @@ tags: [FireNet, Test Review]
 
 # 모델 출력 결과
 
-모델
+영상 1~4는 사람의 눈높이 위치에서 촬영한 영상입니다. 
+영상 5는 사람이 찍었지만 불 이 만힝 보이지 않는(전형적인 산불 영상 연기가 많이 나는 영상)입니다. 
+영상 6~7은 드론을 이용해 고도가 높은 시점에서 촬영한 영상입니다.
 
 * 영상 1
     * FireNet  
