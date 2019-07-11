@@ -1,11 +1,11 @@
 header {
-    background: #222;
+    background: #f8f8f8;
     height: 52px;
-    color: #9d9d9d;
-    box-shadow: 0 2px 4px 1px rgba(0,0,0,0.5);
+    color: #272262;
+    box-shadow: 0 2px 4px 1px rgba(0,0,0,0.2);
     margin-bottom: 20px;
     a {
-        color: #9d9d9d;
+        color: #4d6dad;
         -webkit-transition: 0.2s ease;
         transition: 0.2s ease;
         &:hover {
@@ -18,7 +18,6 @@ header {
         line-height: 52px;
         .logo {
             height: 32px;
-            filter: grayscale(1) invert(1);
             margin-bottom: -8px;
         }
         small {
@@ -45,7 +44,7 @@ header {
                         padding: 0 10px;
                         height: 52px;
                         &:hover {
-                            background-color: #000;
+                            background-color: #4d6dad;
                         }
                         i {
                             margin-right: 5px;
@@ -53,7 +52,7 @@ header {
                     }
                     >.active {
                         color: #fff;
-                        background-color: #000;
+                        background-color: #4d6dad;
                         box-shadow: 0 25px 25px -15px rgba(255,255,255,0.93);
                     }
                 }
