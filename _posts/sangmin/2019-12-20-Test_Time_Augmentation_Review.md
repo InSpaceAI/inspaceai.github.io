@@ -45,11 +45,11 @@ Test Time Augmentation(TTA)도 Augmentation하는 방법은 같습니다. 하지
 
 만약 위 상황에서 Test Time Augmentation을 적용한다면 어떻게 될까요? 같은 이미지를 약간만 변형시킨 5장의 이미지를 모델에 입력해보고, 분류 결과를 예측해 보겠습니다.  
 
-![modify test image]]({{"/images/sangmin/TTA_5.png" | prepend: site.baseurl }})  
+![modify test image]({{"/images/sangmin/TTA_5.png" | prepend: site.baseurl }})  
 
 모델에서 출력된 각 이미지들의 클래스 확률은 다음과 같습니다.  
 
-![modify test image score]]({{"/images/sangmin/TTA_6.png" | prepend: site.baseurl }})  
+![modify test image score]({{"/images/sangmin/TTA_6.png" | prepend: site.baseurl }})  
 
 보시다시피, 1번과 4번 이미지는 9번째 클래스 예측 확률(결과)이 가장 합리적이고, 높게 나왔습니다. 2번 이미지는 2번째와 9번째 클래스 예측 확률의 차이가 매우 적고, 3번과 5번 이미지는 분류 결과가 틀렸습니다. 이제 5개의 결과를 모두 평균으로 구하면 어떻게 될까요?  
 
