@@ -3,7 +3,7 @@ layout: post
 title: "화재 감지 모델 테스트"
 author: "박상민"
 date: 2019-06-17 12:00:00
-categories: [Review, Object Detection]
+categories: [Review, Fire Detection]
 tags: [FireNet, Test Review]
 ---
 
