@@ -25,24 +25,23 @@ Data Augmentation에 대해 자료조사를 하던 중, TTA(Test Time Augmentati
 
 Test Time Augmentation(TTA)도 Augmentation하는 방법은 같습니다. 하지만 학습할 때 augmentation하는게 아닌, 테스트 셋으로 모델을 테스트하거나, 실제 운영할 때 augmentation을 수행하는 것 입니다. 
 
-<center> ![TTA_1]({{"/images/sangmin/TTA_1.png" | prepend: site.baseurl }})  </center>
+![TTA_1]({{"/images/sangmin/TTA_1.png" | prepend: site.baseurl }})
 
 
 위 사진을 예로 들자면, 원본 입력 이미지 한장을 augmentation해서 2장 더 만들었습니다. 총 3장의 이미지를 학습된 모델에 각각 입력해주고, 모델에서 나온 결과는 모두 평균화하여 최종 결과를 도출하게 됩니다. TTA의 가장 중요한 컨셉은 원본 이미지 한장만 입력받아 결과를 예측하는 것이 아니라, 원본이미지를 augmentation한 다양한 관점의 이미지들을 입력받아 최종 결과를 도출하는 것 입니다.  
 
 좀 더 자세한 예를 들어보겠습니다.  
 
-<center> ![The test image]({{"/images/sangmin/TTA_2.png" | prepend: site.baseurl }})  
- </center>  
+![The test image]({{"/images/sangmin/TTA_2.png" | prepend: site.baseurl }})
 
 
 학습된 분류 모델에 위 테스트 이미지를 입력하여 분류 결과를 에측하려고 합니다. 테스트 이미지를 모델에 입력하면 아래와 같이 각 클래스에 대한 예측 확률이 나옵니다. 가장 높은 확률을 최종 도출하므로 2번째 클래스로 예측을 합니다.  
 
-<center> ![Class Socre]({{"/images/sangmin/TTA_3.png" | prepend: site.baseurl }})  </center>
+![Class Socre]({{"/images/sangmin/TTA_3.png" | prepend: site.baseurl }})
 
 그리고 테스트 이미지의 정답은 아래와 같다고 할 때,  
 
-<center> ![Class Label]({{"/images/sangmin/TTA_4.png" | prepend: site.baseurl }})   </center>
+![Class Label]({{"/images/sangmin/TTA_4.png" | prepend: site.baseurl }})
 
 모델에 예측한 분류 결과는 틀렸다는 걸 알 수 있습니다. 모델은 2번째 클래스의 확률이 가장 높다고 예측하였지만, 정답은 9번째 클래스였습니다.  
 
