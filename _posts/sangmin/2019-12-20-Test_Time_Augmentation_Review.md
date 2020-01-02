@@ -169,4 +169,4 @@ Augmentation하는 데이터의 종류는 데이터에 따라 다릅니다. MNIS
 
 <br>
 
-[링크](https://github.com/nathanhubens/TTA-Keras)에 관련 코드가 있으니 참고하셔도 좋을 것 같습니다.  
+[링크](https://github.com/nathanhubens/TTA-Keras)에 전체 소스 코드가 있으니 참고하셔도 좋을 것 같습니다.  
